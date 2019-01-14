@@ -103,7 +103,7 @@ style = xp.asarray(style, dtype=xp.float32)
 style_b = xp.zeros((batchsize,) + style.shape, dtype=xp.float32)
 for i in range(batchsize):
     style_b[i] = style
-feature_s = vgg(Variable(style_b, volatile=True))
+feature_s = vgg(Variable(style_b))
 gram_s = [gram_matrix(y) for y in feature_s]
 
 for epoch in range(n_epoch):
@@ -117,7 +117,7 @@ for epoch in range(n_epoch):
         for j in range(batchsize):
             x[j] = load_image(imagepaths[i*batchsize + j], image_size)
 
-        xc = Variable(x.copy(), volatile=True)
+        xc = Variable(x.copy())
         x = Variable(x)
 
         y = model(x)
