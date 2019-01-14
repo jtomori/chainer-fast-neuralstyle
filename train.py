@@ -143,12 +143,12 @@ for epoch in range(n_epoch):
         O.update()
 
         if args.checkpoint > 0 and i % args.checkpoint == 0:
-            serializers.save_npz('models/{}_{}_{}.model'.format(output, epoch, i), model)
-            serializers.save_npz('models/{}_{}_{}.state'.format(output, epoch, i), O)
+            serializers.save_npz('{}_{}_{}.model'.format(output, epoch, i), model)
+            serializers.save_npz('{}_{}_{}.state'.format(output, epoch, i), O)
 
     print('save "style.model"')
-    serializers.save_npz('models/{}_{}.model'.format(output, epoch), model)
-    serializers.save_npz('models/{}_{}.state'.format(output, epoch), O)
+    serializers.save_npz('{}_{}.model'.format(output, epoch), model)
+    serializers.save_npz('{}_{}.state'.format(output, epoch), O)
 
-serializers.save_npz('models/{}.model'.format(output), model)
-serializers.save_npz('models/{}.state'.format(output), O)
+serializers.save_npz('{}.model'.format(output), model)
+serializers.save_npz('{}.state'.format(output), O)
