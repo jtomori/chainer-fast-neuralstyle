@@ -45,6 +45,8 @@ parser.add_argument('--batchsize', '-b', type=int, default=1,
                     help='batch size (default value is 1)')
 parser.add_argument('--initmodel', '-i', default=None, type=str,
                     help='initialize the model from given file')
+parser.add_argument('--vggmodel', '-v', default='vgg16.model', type=str,
+                    help='path to vgg16.model')
 parser.add_argument('--resume', '-r', default=None, type=str,
                     help='resume the optimization from snapshot')
 parser.add_argument('--output', '-o', default=None, type=str,
@@ -82,7 +84,7 @@ print(n_iter, 'iterations,', n_epoch, 'epochs')
 
 model = FastStyleNet()
 vgg = VGG()
-serializers.load_npz('vgg16.model', vgg)
+serializers.load_npz(args.vggmodel, vgg)
 if args.initmodel:
     print('load model from', args.initmodel)
     serializers.load_npz(args.initmodel, model)
